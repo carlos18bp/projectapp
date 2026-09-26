@@ -418,7 +418,8 @@ test.describe('Admin Accounting Expenses & Hostings', () => {
     ).toBeVisible({ timeout: 25_000 });
     await expect(page.getByText('Hostings activos', { exact: true })).toBeVisible();
     await expect(page.getByText('Ingreso mensual', { exact: true })).toBeVisible();
-    await expect(page.getByText('$91.667 COP').first()).toBeVisible();
+    // Valor/mes also renders in the phone's grouped details, hidden here.
+    await expect(page.getByText('$91.667 COP').filter({ visible: true }).first()).toBeVisible();
   });
 
   test('hostings table shows domain and estado badge per row', {
